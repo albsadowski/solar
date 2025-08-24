@@ -1,0 +1,3 @@
+[submodule "legalbench"]
+	path = legalbench
+	url = https://huggingface.co/datasets/nguha/legalbench

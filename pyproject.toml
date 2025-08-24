@@ -1,0 +1,19 @@
+[project]
+name = "solar"
+version = "0.1.0"
+description = "Structured Ontological Legal Analysis Reasoner (SOLAR)"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "dotenv>=0.9.9",
+    "langchain-community>=0.3.25",
+    "langchain-experimental>=0.3.4",
+    "langchain-google-genai>=2.1.3",
+    "langchain[anthropic,fireworks,groq,openai]>=0.3.25",
+    "langgraph>=0.3.31",
+    "nltk>=3.9.1",
+    "pydantic>=2.11.7",
+    "ruff>=0.11.6",
+    "scikit-learn>=0.13.2",
+    "tqdm>=4.67.1",
+]
