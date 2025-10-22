@@ -23,7 +23,7 @@ Generate TBox ontology and interpreter from legal statute:
 
 ```bash
 uv run stage_one.py \
-    --statute ./sara_statute.txt \
+    --statute ./eval/sara_statute.txt \
     --output-tbox ./tbox.json \
     --output-py ./interpreter.py \
     --model gpt-4.1-mini

@@ -1,0 +1,321 @@
+{
+    "classes": [
+        {
+            "name": "Employer",
+            "description": "An entity that pays wages or meets certain thresholds for employing workers."
+        },
+        {
+            "name": "Employee",
+            "description": "An individual who performs services for an employer in exchange for wages or remuneration."
+        },
+        {
+            "name": "Wages",
+            "description": "All remuneration for employment, subject to specified exceptions."
+        },
+        {
+            "name": "Employment",
+            "description": "The performance of any service by an employee for an employer within the scope of the statute."
+        },
+        {
+            "name": "DomesticService",
+            "description": "Domestic service in a private home or certain college clubs or fraternity/sorority chapters."
+        },
+        {
+            "name": "AgriculturalLabor",
+            "description": "Labor performed in agricultural settings under the conditions outlined in the statute."
+        },
+        {
+            "name": "Taxpayer",
+            "description": "An individual (or entity) subject to the tax provisions of the statute."
+        },
+        {
+            "name": "MarriedIndividual",
+            "description": "A taxpayer recognized as married under section 7703."
+        },
+        {
+            "name": "SurvivingSpouse",
+            "description": "A taxpayer whose spouse died in one of the two preceding years and who meets certain household conditions."
+        },
+        {
+            "name": "HeadOfHousehold",
+            "description": "A taxpayer who is unmarried (or considered unmarried) and maintains a home for a qualifying person."
+        },
+        {
+            "name": "Dependent",
+            "description": "An individual (qualifying child or relative) who meets certain statutory tests under section 152."
+        },
+        {
+            "name": "QualifyingChild",
+            "description": "A dependent meeting relationship, residency, and age requirements under section 152(c)."
+        },
+        {
+            "name": "QualifyingRelative",
+            "description": "An individual who bears a qualifying relationship, has no income, and is not a qualifying child."
+        },
+        {
+            "name": "Household",
+            "description": "A household maintained by a taxpayer, potentially relevant to head of household or surviving spouse status."
+        },
+        {
+            "name": "TaxableIncome",
+            "description": "Gross income minus deductions, or adjusted gross income minus standard deduction."
+        },
+        {
+            "name": "AdjustedGrossIncome",
+            "description": "Gross income minus certain allowed deductions before itemized or standard deductions."
+        },
+        {
+            "name": "PersonalExemption",
+            "description": "An exemption amount allowable to a taxpayer and spouse, subject to limitations."
+        },
+        {
+            "name": "UnmarriedIndividual",
+            "description": "A taxpayer who is not married."
+        },
+        {
+            "name": "Service",
+            "description": "A class representing the performance of services."
+        },
+        {
+            "name": "USGovernment",
+            "description": "Represents the United States Government."
+        },
+        {
+            "name": "TaxYear",
+            "description": "Represents a specific tax year for which a taxpayer is filing."
+        },
+        {
+            "name": "TaxRegime",
+            "description": "Represents a specific tax regime period (e.g., pre-2018, 2018-2025) with different standard deduction rules."
+        }
+    ],
+    "properties": [
+        {
+            "type": "unary",
+            "name": "isBlind",
+            "arguments": [
+                "Taxpayer"
+            ],
+            "description": "Indicates that a taxpayer is blind at the close of the taxable year."
+        },
+        {
+            "type": "unary",
+            "name": "isNotBlind",
+            "arguments": [
+                "Taxpayer"
+            ],
+            "description": "Indicates that a taxpayer is not blind at the close of the taxable year. Mutually exclusive with isBlind."
+        },
+        {
+            "type": "unary",
+            "name": "isAged",
+            "arguments": [
+                "Taxpayer"
+            ],
+            "description": "Indicates that a taxpayer is age 65 or older at the close of the taxable year."
+        },
+        {
+            "type": "unary",
+            "name": "isNotAged",
+            "arguments": [
+                "Taxpayer"
+            ],
+            "description": "Indicates that a taxpayer is under age 65 at the close of the taxable year. Mutually exclusive with isAged."
+        },
+        {
+            "type": "unary",
+            "name": "isNonresidentAlien",
+            "arguments": ["Taxpayer"],
+            "description": "Indicates that a taxpayer is a nonresident alien for tax purposes."
+        },
+        {
+            "type": "object",
+            "name": "hasSpouse",
+            "arguments": [
+                "Taxpayer",
+                "Taxpayer"
+            ],
+            "description": "Indicates that a taxpayer has a spouse as of the tax year in question. Do NOT use this to represent historical spouses from previous years who are no longer spouses due to death or divorce. Only include current spouses relevant to the filing year."
+        },
+        {
+            "type": "object",
+            "name": "doesNotHaveSpouse",
+            "arguments": [
+                "Taxpayer",
+                "Taxpayer"
+            ],
+            "description": "Indicates that a taxpayer does not have a spouse. Mutually exclusive with hasSpouse."
+        },
+        {
+            "type": "object",
+            "name": "employsIndividual",
+            "arguments": [
+                "Employer",
+                "Employee"
+            ],
+            "description": "Indicates that an employer has an individual in employment."
+        },
+        {
+            "type": "object",
+            "name": "doesNotEmployIndividual",
+            "arguments": [
+                "Employer",
+                "Employee"
+            ],
+            "description": "Indicates that an employer does not employ an individual. Mutually exclusive with employsIndividual."
+        },
+        {
+            "type": "datatype",
+            "name": "hasTotalWagesPaid",
+            "arguments": [
+                "Employer",
+                "decimal"
+            ],
+            "description": "Indicates the total amount of wages paid by an employer."
+        },
+        {
+            "type": "datatype",
+            "name": "doesNotHaveTotalWagesPaid",
+            "arguments": [
+                "Employer",
+                "decimal"
+            ],
+            "description": "Indicates that the employer reports no wages paid. Mutually exclusive with hasTotalWagesPaid."
+        },
+        {
+            "type": "datatype",
+            "name": "hasAdjustedGrossIncomeAmount",
+            "arguments": [
+                "Taxpayer",
+                "decimal"
+            ],
+            "description": "Indicates the taxpayer's income BEFORE standard deduction and personal exemptions are applied. This is typically equal to total wages or gross income minus certain adjustments. The system will calculate taxable income by subtracting standard deduction and personal exemptions from this amount."
+        },
+        {
+            "type": "unary",
+            "name": "doesNotHaveAdjustedGrossIncomeAmount",
+            "arguments": [
+                "Taxpayer"
+            ],
+            "description": "Indicates that the taxpayer reports no adjusted gross income. Mutually exclusive with hasAdjustedGrossIncomeAmount."
+        },
+        {
+            "type": "object",
+            "name": "claimsDependent",
+            "arguments": [
+                "Taxpayer",
+                "Dependent"
+            ],
+            "description": "Indicates that a taxpayer claims a specific dependent under section 151."
+        },
+        {
+            "type": "object",
+            "name": "doesNotClaimDependent",
+            "arguments": [
+                "Taxpayer",
+                "Dependent"
+            ],
+            "description": "Indicates that a taxpayer does not claim a specific dependent. Mutually exclusive with claimsDependent."
+        },
+        {
+            "type": "unary",
+            "name": "filesJointReturn",
+            "arguments": [
+                "Taxpayer"
+            ],
+            "description": "Indicates that the taxpayer files a single joint return."
+        },
+        {
+            "type": "unary",
+            "name": "filesSeparateReturn",
+            "arguments": ["Taxpayer"],
+            "description": "Indicates that a married taxpayer files a separate return rather than a joint return. Mutually exclusive with filesJointReturn."
+        },
+        {
+            "type": "object",
+            "name": "performedFor",
+            "arguments": [
+                "Service",
+                "USGovernment"
+            ],
+            "description": "Indicates that a certain service is performed for the US Government."
+        },
+        {
+            "type": "unary",
+            "name": "isEmployer",
+            "arguments": [
+                "Taxpayer"
+            ],
+            "description": "Indicates that the subject is classified as an Employer."
+        },
+        {
+            "type": "unary",
+            "name": "isSurvivingSpouse",
+            "arguments": [
+                "Taxpayer"
+            ],
+            "description": "Indicates that the subject is a SurvivingSpouse as recognized by the statute."
+        },
+        {
+            "type": "unary",
+            "name": "isMarriedIndividual",
+            "arguments": [
+                "Taxpayer"
+            ],
+            "description": "Indicates that the subject is a MarriedIndividual as recognized by the statute."
+        },
+        {
+            "type": "unary",
+            "name": "isUnmarriedIndividual",
+            "arguments": [
+                "Taxpayer"
+            ],
+            "description": "Indicates that the subject is an UnmarriedIndividual as recognized by the statute."
+        },
+        {
+            "type": "unary",
+            "name": "isHeadOfHousehold",
+            "arguments": [
+                "Taxpayer"
+            ],
+            "description": "Indicates that the subject is a HeadOfHousehold as recognized by the statute."
+        },
+        {
+            "type": "unary",
+            "name": "isService",
+            "arguments": [
+                "Service"
+            ],
+            "description": "Indicates that the subject is classified as a Service."
+        }
+    ],
+    "rules": [
+        {
+            "fol_expression": "isMarriedIndividual(X) & not filesJointReturn(X)",
+            "implication_property_type": "unary",
+            "implication_property_name": "IsTaxedAsMarriedFilingSeparately",
+            "implication_property_arguments": [
+                "Taxpayer"
+            ],
+            "description": "A married individual who does not file a single joint return with a spouse is subject to the Married Filing Separately tax provisions."
+        },
+        {
+            "fol_expression": "isUnmarriedIndividual(X) & not isSurvivingSpouse(X) & not isHeadOfHousehold(X)",
+            "implication_property_type": "unary",
+            "implication_property_name": "IsTaxedAsUnmarriedIndividual",
+            "implication_property_arguments": [
+                "Taxpayer"
+            ],
+            "description": "An individual who is unmarried and not a surviving spouse or head of household is taxed under the unmarried individual provisions."
+        },
+        {
+            "fol_expression": "isService(S) & performedFor(S, USGovernment)",
+            "implication_property_type": "unary",
+            "implication_property_name": "IsNotEmployment",
+            "implication_property_arguments": [
+                "Service"
+            ],
+            "description": "Any service performed in the employ of the US Government is not considered 'employment' per section 3306(c)(6)."
+        }
+    ]
+}
